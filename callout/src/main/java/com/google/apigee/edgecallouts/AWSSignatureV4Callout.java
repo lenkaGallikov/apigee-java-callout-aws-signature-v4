@@ -174,7 +174,6 @@ public class AWSSignatureV4Callout implements Execution {
 			return ExecutionResult.SUCCESS;
 
 		} catch (Error | Exception e) {
-			e.printStackTrace(stderr);
 			return ExecutionResult.ABORT;
 		}
 		finally {
