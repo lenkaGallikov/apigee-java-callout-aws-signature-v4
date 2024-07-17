@@ -138,3 +138,48 @@ That is the build output.
 ### Not Google Product Clause
 
 This is not an officially supported Google product.
+
+### Update the jar file incase you need to
+
+$ git clone [http://github.com/klout/brickhouse](https://github.com/lenkaGallikov/apigee-java-callout-aws-signature-v4)
+$ cd apigee-java-callout-aws-signature-v4/callout
+$ mvn package
+$ cd target
+You should be having the new jar file in the target folder
+
+### Maven install 
+
+Before running the above command, install Maven.
+Use 
+```bash
+$sudo apt install maven
+```
+to install Maven.
+```bash
+$mvn --version
+```
+### Resolving dependancies
+
+While running the $ mvn package command you will get the below error
+```bash
+Could not resolve dependencies for project com.google.apigee:edge-callout-aws-signature-v4:jar:1.0-SNAPSHOT: The following artifacts could not be resolved: com.apigee.edge:message-flow:jar:1.0.0, com.apigee.edge:expressions:jar:1.0.0: Could not find artifact com.apigee.edge:message-flow:jar:1.0.0 in central (https://repo.maven.apache.org/maven2)
+```
+To resolve this download the expressions-1.0.0.jar & message-flow-1.0.0.jar from https://github.com/apigee/api-platform-samples/tree/master/doc-samples/java-cookbook/lib into the callout folder. And run the below command:
+```bash
+mvn install:install-file \
+-Dfile=expressions-1.0.0.jar \
+-DgroupId=com.apigee.edge \
+-DartifactId=expressions \
+-Dversion=1.0.0 \
+-Dpackaging=jar \
+-DgeneratePom=true
+```
+```bash   
+mvn install:install-file \
+-Dfile=message-flow-1.0.0.jar \
+-DgroupId=com.apigee.edge \
+-DartifactId=message-flow \
+-Dversion=1.0.0 \
+-Dpackaging=jar \
+-DgeneratePom=true
+```
